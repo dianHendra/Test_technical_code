@@ -1,0 +1,65 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    
+    <input id="InputNumber" name="number" type="number" step="any" style="width: 50%;" required>
+    <br />
+    <span>
+        <button id="SegiiTiga" class="GenBtn" onClick="GenreateSegitiga($('#InputNumber').val())">Generate Segitiga</button>
+        <button id="Ganjil" class="GenBtn" onClick="GenreateSegitiga($('#InputNumber').val())">Generate Bilangan Ganjil</button>
+        <button id="Prima" class="GenBtn" onClick="GenreateSegitiga($('#InputNumber').val())">Generate Bilangan Prima</button>
+    </span>
+    <p>
+        <h3>Result: </h3>
+    </p>
+    <p>
+        <span id="ResultArea"></span>
+    </p>
+</div>
+
+
+<script>
+
+    
+
+    function GenreateSegitiga(num) {
+        //alert('GenreateSegitiga;')
+        if (num != "") {
+            $.ajax({
+                type: "GET",
+                url: "https://localhost:44325/Api/Value/GenerateSegitiga?param=" + num,
+                contentType: "application/json",
+                dataType: "json",
+                //data: JSON.stringify({
+                //    first_name: $("#namec").val(),
+                //    last_name: $("#surnamec").val(),
+                //    email: $("#emailc").val(),
+                //    mobile: $("#numberc").val(),
+                //    password: $("#passwordc").val()
+                //}),
+                success: function (response) {
+                    console.log(response);
+                },
+                error: function (response) {
+                    console.log(response);
+                }
+            });
+        }
+        else {
+            alert('Please input number!');
+        }
+    }
+    function GenreateGanjil(num) {
+        alert('GenreateGanjil;')
+    }
+    function GenreatePrima(num) {
+        alert('GenreatePrima;')
+    }
+
+</script>
